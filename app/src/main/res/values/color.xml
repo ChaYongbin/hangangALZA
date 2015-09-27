@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <!--액션바 색상 관련-->
+    <color name="ColorPrimary">#ff19BDC4</color>
+    <color name="ColorPrimaryDark">#ff17afb5</color>
+</resources>
