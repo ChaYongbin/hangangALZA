@@ -12,23 +12,26 @@ import java.util.ArrayList;
  */
 public class PagerAdapter extends FragmentStatePagerAdapter {
 
+    public static int LOOPS_COUNT = 10000;
+
     private ArrayList<PagerFragment> mFragments;
     private ViewPager mPager;
 
     public PagerAdapter(FragmentManager fm) {
         super(fm);
-
         mFragments = new ArrayList<>();
     }
 
     @Override
     public Fragment getItem(int i) {
-        return mFragments.get(i);
+
+        return mFragments.get(i % 24);
+
     }
 
     @Override
     public int getCount() {
-        return mFragments.size();
+        return mFragments.size()*LOOPS_COUNT ;
     }
 
     public void add(PagerFragment parallaxFragment) {
