@@ -62,7 +62,7 @@ public class PagerFragment  extends Fragment {
 
         int imageFile = getResources().getIdentifier(getArguments().getString("image"),
                 "drawable", context.getPackageName());
-        int imageFileBlur = getResources().getIdentifier("blur_main",
+        int imageFileBlur = getResources().getIdentifier("blur",
                 "drawable", context.getPackageName());
         int imageNoFile = getResources().getIdentifier("no_img",
                 "drawable", context.getPackageName());
@@ -76,7 +76,7 @@ public class PagerFragment  extends Fragment {
 
 //        firstLayout = (LinearLayout) v.findViewById(R.id.a);
 //        TextView textView = (TextView) v.findViewById(R.id.name);
-//
+
 //        textView.setText(getArguments().getString("name"));
 
         setViewHeight(image, screenHeight);
@@ -89,7 +89,8 @@ public class PagerFragment  extends Fragment {
         titleView = v.findViewById(R.id.title_bg);
 
         listView = (ListView) v.findViewById(R.id.list);
-        listView.setAdapter(new BlurListAdapter(, getArguments().getString("name")));
+        listView.setAdapter(new BlurListAdapter(getActivity(), getArguments().getString("name")));
+        scrollView = (ScrollView) v.findViewById(R.id.bgScrollView);
 
         listenToScroll();
 

@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.GoogleMap;
@@ -26,6 +28,7 @@ public class BlurListAdapter extends BaseAdapter {
     protected GoogleMap mGoogleMap;
 
     private LayoutInflater layoutInflater;
+    private LinearLayout linearLayout;
     private int screenHeight;
     private Context mContext;
 
@@ -40,7 +43,7 @@ public class BlurListAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return 3;
+        return 1;
     }
 
     @Override
@@ -78,9 +81,13 @@ public class BlurListAdapter extends BaseAdapter {
             convertView = layoutInflater.inflate(R.layout.first_page_layout,
                     parent, false);
 
-            ViewGroup.LayoutParams params = convertView.getLayoutParams();
-            params.height = screenHeight;
-            convertView.setLayoutParams(params);
+            linearLayout = (LinearLayout) convertView.findViewById(R.id.bridge_name);
+            linearLayout.setMinimumHeight(screenHeight);
+
+//            ViewGroup.LayoutParams params = convertView.getLayoutParams();
+//            params.height = screenHeight;
+//
+//            convertView.setLayoutParams(params);
             convertView.setId(R.id.id0);
 
             TextView textView = (TextView) convertView.findViewById(R.id.name);

@@ -3,24 +3,135 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:shadowColor="#000"
-        android:shadowDx="3"
-        android:shadowDy="3"
-        android:shadowRadius="5"
-        android:textColor="#FFFFFFFF"
-        android:textStyle="bold"
-        android:textSize="41sp"
-        android:paddingLeft="20dp"
-        android:id="@+id/name"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="5dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginBottom="50dp" />
+    <LinearLayout
+        android:id="@+id/bridge_name"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#00ffffff"
+        android:layout_alignParentBottom="false"
+        android:gravity="bottom">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:shadowColor="#000"
+            android:shadowDx="3"
+            android:shadowDy="3"
+            android:shadowRadius="5"
+            android:textColor="#FFFFFFFF"
+            android:textStyle="bold"
+            android:textSize="41sp"
+            android:paddingLeft="20dp"
+            android:id="@+id/name"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginBottom="50dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/aaa"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/bridge_name"
+        android:background="#8C000000"
+        android:layout_marginLeft="7dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="7dp"
+        android:layout_marginBottom="12dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="요약정보"
+            android:id="@+id/textView2"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/bar"
+            android:src="@drawable/bar"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="서울 용산구(龍山區) 한강로3가와 동작구(銅雀區) 노량진(鷺梁津) 사이를 잇는 한강인도교로 총연장 1,005m이다. 1984년 제1한강교가 한강대교로 개칭되었는데, 한강 위에 놓인 최초의 인도교로, 1916년 3월에 착공하여 이듬해인 1917년 10월에 준공한 교량이다.
+[네이버 지식백과] 한강대교 [漢江大橋] (두산백과)"
+            android:id="@+id/textView3"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bbb"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/aaa"
+        android:background="#8c000000"
+        android:layout_marginLeft="7dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="7dp"
+        android:layout_marginBottom="12dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="요약정보"
+            android:id="@+id/textView23"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/bar1"
+            android:src="@drawable/bar"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="서울 용산구(龍山區) 한강로3가와 동작구(銅雀區) 노량진(鷺梁津) 사이를 잇는 한강인도교로 총연장 1,005m이다. 1984년 제1한강교가 한강대교로 개칭되었는데, 한강 위에 놓인 최초의 인도교로, 1916년 3월에 착공하여 이듬해인 1917년 10월에 준공한 교량이다.
+[네이버 지식백과] 한강대교 [漢江大橋] (두산백과)"
+            android:id="@+id/textView4"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ccc"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@id/bbb"
+        android:layout_margin="5dp"
+        android:background="#00000000">
+    </LinearLayout>
 </RelativeLayout>

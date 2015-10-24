@@ -19,7 +19,6 @@
             android:id="@+id/bg_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
-
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -27,7 +26,6 @@
                 android:id="@+id/image"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"/>
-
             <ImageView
                 android:id="@+id/blured_image"
                 android:layout_width="match_parent"
@@ -42,12 +40,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:cacheColorHint="@android:color/transparent"
+        android:overScrollMode="always"
         android:divider="@null"
-        android:overScrollMode="never"
         android:scrollbars="none" >
     </ListView>
-
-    <include layout="@layout/scroll_page" />
 
     <View
         android:id="@+id/title_bg"
@@ -68,7 +64,6 @@
         android:layout_alignParentEnd="true"
         android:layout_marginRight="13dp"
         android:layout_marginTop="5dp"
-        android:textSize="17sp"
-        android:password="false" />
+        android:textSize="17sp" />
 
 </RelativeLayout>
