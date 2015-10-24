@@ -1,17 +1,19 @@
-package io.nuri.hangangalza;
+package io.nuri.hangangalza.main;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.ScrollView;
 
 import com.xgc1986.parallaxPagerTransformer.ParallaxPagerTransformer;
 
 import java.util.ArrayList;
+
+import io.nuri.hangangalza.data.BridgeData;
+import io.nuri.hangangalza.data.BridgeLoadData;
+import io.nuri.hangangalza.R;
 
 public class MainActivity extends FragmentActivity {
 
@@ -21,16 +23,27 @@ public class MainActivity extends FragmentActivity {
     private BridgeLoadData bridgeLoadData;
     private ArrayList<BridgeData> bridgeDataArrayList = new ArrayList<BridgeData>();
 
+    private Context context;
     /**
      * Called when the activity is first created.
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        this.context = context;
         setContentView(R.layout.activity_main);
 
         initPager();
 
+    }
+
+    public static Context getContext(){
+        return getContext();
+    }
+
+    public static Activity getActivity() {
+        return getActivity();
     }
 
     private void initPager(){

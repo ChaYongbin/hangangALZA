@@ -1,4 +1,4 @@
-package io.nuri.hangangalza;
+package io.nuri.hangangalza.data;
 
 
 import android.content.Context;

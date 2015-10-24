@@ -1,29 +1,46 @@
-package io.nuri.hangangalza;
+package io.nuri.hangangalza.main;
 
 import android.app.Activity;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ListAdapter;
 import android.widget.TextView;
+
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMapOptions;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.MapsInitializer;
+import com.google.android.gms.maps.OnMapReadyCallback;
+
+import io.nuri.hangangalza.R;
+import io.nuri.hangangalza.utils.ImageUtils;
 
 /**
  * Created by chayongbin on 15. 10. 19..
  */
 public class BlurListAdapter extends BaseAdapter {
 
+
+    protected GoogleMap mGoogleMap;
+
     private LayoutInflater layoutInflater;
     private int screenHeight;
+    private Context mContext;
 
-    public BlurListAdapter(Activity activity) {
-        layoutInflater = LayoutInflater.from(activity);
-        screenHeight = ImageUtils.getScreenHeight(activity);
+    private String name;
+
+    public BlurListAdapter(Activity context, String name) {
+        layoutInflater = LayoutInflater.from(context);
+        screenHeight = ImageUtils.getScreenHeight(context);
+        this.name = name;
+        mContext = context;
     }
 
     @Override
     public int getCount() {
-        return 50;
+        return 3;
     }
 
     @Override
@@ -40,8 +57,10 @@ public class BlurListAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         switch (getItemViewType(position)) {
             case 0:
-                return getFirstView(position, convertView, parent);
+                return getFirstView(position, convertView, parent, name);
             case 1:
+                return getThirdView(position, convertView, parent);
+            case 2:
                 return getSecondView(position, convertView, parent);
             default:
                 return null;
@@ -56,14 +75,19 @@ public class BlurListAdapter extends BaseAdapter {
         return 1;
     }
 
-    private View getFirstView(int position, View convertView, ViewGroup parent) {
+    private View getFirstView(int position, View convertView, ViewGroup parent, String name) {
         if (convertView == null) {
             convertView = layoutInflater.inflate(R.layout.first_page_layout,
                     parent, false);
+
             ViewGroup.LayoutParams params = convertView.getLayoutParams();
             params.height = screenHeight;
             convertView.setLayoutParams(params);
             convertView.setId(R.id.id0);
+
+            TextView textView = (TextView) convertView.findViewById(R.id.name);
+
+            textView.setText(name);
         }
 
         return convertView;
@@ -81,9 +105,20 @@ public class BlurListAdapter extends BaseAdapter {
         return convertView;
     }
 
-    @Override
-    public int getViewTypeCount() {
-        return 2;
+    private View getThirdView(int position, View convertView, ViewGroup parent) {
+        if (convertView == null) {
+            convertView = layoutInflater.inflate(R.layout.bridge_info_layout, parent, false);
+
+            ViewGroup.LayoutParams params = convertView.getLayoutParams();
+            params.height = screenHeight;
+            convertView.setLayoutParams(params);
+        }
+
+        return convertView;
     }
 
+    @Override
+    public int getViewTypeCount() {
+        return 3;
+    }
 }

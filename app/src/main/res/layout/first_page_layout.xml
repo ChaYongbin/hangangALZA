@@ -4,19 +4,23 @@
     android:layout_height="match_parent" >
 
     <TextView
-        android:id="@+id/time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:paddingBottom="7dp"
-        android:paddingLeft="10dp"
-        android:shadowColor="#000"
-        android:shadowDx="1"
-        android:shadowDy="1"
-        android:shadowRadius="10"
-        android:text="04:36"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#FFF"
-        android:textSize="80sp" />
+        android:shadowColor="#000"
+        android:shadowDx="3"
+        android:shadowDy="3"
+        android:shadowRadius="5"
+        android:textColor="#FFFFFFFF"
+        android:textStyle="bold"
+        android:textSize="41sp"
+        android:paddingLeft="20dp"
+        android:id="@+id/name"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginBottom="50dp" />
 
 </RelativeLayout>

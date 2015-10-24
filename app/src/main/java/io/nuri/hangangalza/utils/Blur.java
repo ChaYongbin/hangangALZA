@@ -1,4 +1,4 @@
-package io.nuri.hangangalza;
+package io.nuri.hangangalza.utils;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

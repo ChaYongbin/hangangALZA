@@ -1,8 +1,7 @@
-package io.nuri.hangangalza;
+package io.nuri.hangangalza.main;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Matrix;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -17,6 +16,9 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import io.nuri.hangangalza.R;
+import io.nuri.hangangalza.utils.ImageUtils;
+
 /**
  * Created by chayongbin on 15. 10. 22..
  */
@@ -26,8 +28,7 @@ public class PagerFragment  extends Fragment {
 
     private PagerAdapter mCatsAdapter;
 
-    private ImageView blurredImageView;
-    private ImageView nonBlurImageView;
+    ImageView blurredImageView;
 
     private ListView listView;
     private ScrollView scrollView;
@@ -36,17 +37,25 @@ public class PagerFragment  extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         super.onCreateView(inflater, container, savedInstanceState);
 
-        View v = inflater.inflate(R.layout.fragment_main, container, false);
+        // view init
+        View v = inflater.inflate(R.layout.activity_runtime_blur, container, false);
+
+        // image screen height setting
+        int screenHeight = ImageUtils.getScreenHeight(getActivity())
+                + BACKGROUND_SHIFT;
+
+
         final ImageView image = (ImageView) v.findViewById(R.id.image);
+        blurredImageView = (ImageView) v.findViewById(R.id.blured_image);
 
         Context context = image.getContext();
 
         int imageFile = getResources().getIdentifier(getArguments().getString("image"),
                 "drawable", context.getPackageName());
-
+        int imageFileBlur = getResources().getIdentifier("blur_main",
+                "drawable", context.getPackageName());
         int imageNoFile = getResources().getIdentifier("no_img",
                 "drawable", context.getPackageName());
 
@@ -55,16 +64,28 @@ public class PagerFragment  extends Fragment {
         } else {
             Glide.with(this).load(imageFile).into(image);
         }
+        Glide.with(this).load(imageFileBlur).into(blurredImageView);
 
-        TextView text = (TextView)v.findViewById(R.id.name);
-        text.setText(getArguments().getString("name"));
+        setViewHeight(image, screenHeight);
+        setViewHeight(blurredImageView, screenHeight);
 
         TextView hear = (TextView)v.findViewById(R.id.textView);
         hear.setText(getArguments().getString("id") + "/24");
 
-//        listenToScroll();
+        listView = (ListView) v.findViewById(R.id.list);
+        listView.setAdapter(new BlurListAdapter(getActivity(), getArguments().getString("name")));
+        scrollView = (ScrollView) v.findViewById(R.id.bgScrollView);
+
+        listenToScroll();
+        titleView = v.findViewById(R.id.title_bg);
 
         return v;
+    }
+
+    public void setViewHeight(View v, int height) {
+        ViewGroup.LayoutParams params = v.getLayoutParams();
+        params.height = height;
+        v.setLayoutParams(params);
     }
 
     @SuppressLint("NewApi")
