@@ -57,7 +57,6 @@ public class MainActivity extends FragmentActivity {
         pt.setSpeed(1f);
         mPager.setPageTransformer(false, pt);
 
-
         mAdapter = new PagerAdapter(getSupportFragmentManager());
         mAdapter.setPager(mPager); //only for this transformer
 

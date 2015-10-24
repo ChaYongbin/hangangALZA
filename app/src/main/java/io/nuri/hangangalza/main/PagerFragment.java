@@ -10,7 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -30,6 +32,9 @@ public class PagerFragment  extends Fragment {
 
     ImageView blurredImageView;
 
+    private LinearLayout firstLayout;
+    private RelativeLayout firstLayout1;
+
     private ListView listView;
     private ScrollView scrollView;
     private View titleView;
@@ -45,6 +50,9 @@ public class PagerFragment  extends Fragment {
         // image screen height setting
         int screenHeight = ImageUtils.getScreenHeight(getActivity())
                 + BACKGROUND_SHIFT;
+
+        int screenHeightText = ImageUtils.getScreenHeight(getActivity());
+
 
 
         final ImageView image = (ImageView) v.findViewById(R.id.image);
@@ -66,26 +74,26 @@ public class PagerFragment  extends Fragment {
         }
         Glide.with(this).load(imageFileBlur).into(blurredImageView);
 
+//        firstLayout = (LinearLayout) v.findViewById(R.id.a);
+//        TextView textView = (TextView) v.findViewById(R.id.name);
+//
+//        textView.setText(getArguments().getString("name"));
+
         setViewHeight(image, screenHeight);
         setViewHeight(blurredImageView, screenHeight);
+//        setViewHeight(firstLayout, screenHeightText);
 
         TextView hear = (TextView)v.findViewById(R.id.textView);
         hear.setText(getArguments().getString("id") + "/24");
 
-        listView = (ListView) v.findViewById(R.id.list);
-        listView.setAdapter(new BlurListAdapter(getActivity(), getArguments().getString("name")));
-        scrollView = (ScrollView) v.findViewById(R.id.bgScrollView);
-
-        listenToScroll();
         titleView = v.findViewById(R.id.title_bg);
 
-        return v;
-    }
+        listView = (ListView) v.findViewById(R.id.list);
+        listView.setAdapter(new BlurListAdapter(, getArguments().getString("name")));
 
-    public void setViewHeight(View v, int height) {
-        ViewGroup.LayoutParams params = v.getLayoutParams();
-        params.height = height;
-        v.setLayoutParams(params);
+        listenToScroll();
+
+        return v;
     }
 
     @SuppressLint("NewApi")
@@ -127,6 +135,12 @@ public class PagerFragment  extends Fragment {
 
             }
         });
+    }
+
+    public void setViewHeight(View v, int height) {
+        ViewGroup.LayoutParams params = v.getLayoutParams();
+        params.height = height;
+        v.setLayoutParams(params);
     }
 
     public void setAdapter(PagerAdapter catsAdapter) {

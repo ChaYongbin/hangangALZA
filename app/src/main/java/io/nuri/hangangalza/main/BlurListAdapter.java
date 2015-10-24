@@ -59,8 +59,6 @@ public class BlurListAdapter extends BaseAdapter {
             case 0:
                 return getFirstView(position, convertView, parent, name);
             case 1:
-                return getThirdView(position, convertView, parent);
-            case 2:
                 return getSecondView(position, convertView, parent);
             default:
                 return null;

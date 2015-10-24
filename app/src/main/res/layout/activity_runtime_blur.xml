@@ -47,6 +47,8 @@
         android:scrollbars="none" >
     </ListView>
 
+    <include layout="@layout/scroll_page" />
+
     <View
         android:id="@+id/title_bg"
         android:layout_width="match_parent"
