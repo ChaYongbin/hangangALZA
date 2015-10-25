@@ -2,6 +2,7 @@ package io.nuri.hangangalza.main;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -45,7 +46,7 @@ public class PagerFragment  extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
 
         // view init
-        View v = inflater.inflate(R.layout.activity_runtime_blur, container, false);
+        View v = inflater.inflate(R.layout.activity_main_pager, container, false);
 
         // image screen height setting
         int screenHeight = ImageUtils.getScreenHeight(getActivity())
@@ -74,17 +75,12 @@ public class PagerFragment  extends Fragment {
         }
         Glide.with(this).load(imageFileBlur).into(blurredImageView);
 
-//        firstLayout = (LinearLayout) v.findViewById(R.id.a);
-//        TextView textView = (TextView) v.findViewById(R.id.name);
-
-//        textView.setText(getArguments().getString("name"));
-
         setViewHeight(image, screenHeight);
         setViewHeight(blurredImageView, screenHeight);
-//        setViewHeight(firstLayout, screenHeightText);
 
         TextView hear = (TextView)v.findViewById(R.id.textView);
         hear.setText(getArguments().getString("id") + "/24");
+        hear.setTextColor(Color.parseColor("#FFFFFF"));
 
         titleView = v.findViewById(R.id.title_bg);
 

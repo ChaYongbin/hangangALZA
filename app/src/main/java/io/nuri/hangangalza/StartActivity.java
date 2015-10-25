@@ -6,8 +6,12 @@ import android.os.Bundle;
 
 import android.os.Handler;
 import android.os.Message;
+import android.widget.ImageView;
+
+import com.bumptech.glide.Glide;
 
 import io.nuri.hangangalza.main.MainActivity;
+import io.nuri.hangangalza.utils.ImageUtils;
 
 /**
  * Created by chayongbin on 15. 10. 23..
@@ -20,9 +24,25 @@ public class StartActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.start_activity);
 
-        Intent intent = new Intent(StartActivity.this, MainActivity.class);
-        StartActivity.this.startActivity(intent);
-        StartActivity.this.finish();
+        ImageView imageView = (ImageView) findViewById(R.id.imageView);
+
+        int imageFile = R.drawable.splash;
+        Glide.with(this).load(imageFile).into(imageView);
+
+        initialize();
+    }
+
+    private void initialize()
+    {
+        Handler handler = new Handler() {
+            @Override
+            public void handleMessage(Message msg)
+            {
+                finish();    // 액티비티 종료
+            }
+        };
+
+        handler.sendEmptyMessageDelayed(0, 3000);    // ms, 3초후 종료시킴
     }
 
 }

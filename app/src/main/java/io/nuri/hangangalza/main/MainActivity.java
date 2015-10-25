@@ -2,6 +2,7 @@ package io.nuri.hangangalza.main;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
@@ -11,6 +12,7 @@ import com.xgc1986.parallaxPagerTransformer.ParallaxPagerTransformer;
 
 import java.util.ArrayList;
 
+import io.nuri.hangangalza.StartActivity;
 import io.nuri.hangangalza.data.BridgeData;
 import io.nuri.hangangalza.data.BridgeLoadData;
 import io.nuri.hangangalza.R;
@@ -29,9 +31,11 @@ public class MainActivity extends FragmentActivity {
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
+        startActivity(new Intent(this, StartActivity.class));
         super.onCreate(savedInstanceState);
 
-        this.context = context;
+
         setContentView(R.layout.activity_main);
 
         initPager();

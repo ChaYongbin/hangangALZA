@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="alza" parent="@style/Theme.AppCompat">
+    <style name="alza" parent="@style/Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimaryDark">@color/primary_dark_material_light_1</item>
         <item name="android:colorBackground">@color/background_material_dark</item>
         <item name="android:statusBarColor">@color/statusBarColor</item>
         <item name="android:textColorPrimary">@color/primary_text_material_light</item>
-        <item name="windowActionBarOverlay">true</item>
         <item name="attr/actionBarSize">40dp</item>
     </style>
 </resources>
