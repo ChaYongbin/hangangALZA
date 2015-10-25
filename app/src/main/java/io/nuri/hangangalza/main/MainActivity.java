@@ -26,15 +26,17 @@ public class MainActivity extends FragmentActivity {
     private ArrayList<BridgeData> bridgeDataArrayList = new ArrayList<BridgeData>();
 
     private Context context;
+
+    private int status;
     /**
      * Called when the activity is first created.
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
-        startActivity(new Intent(this, StartActivity.class));
         super.onCreate(savedInstanceState);
 
+        startActivity(new Intent(this, StartActivity.class));
 
         setContentView(R.layout.activity_main);
 

@@ -17,4 +17,12 @@
         <item name="attr/actionBarSize">40dp</item>
     </style>
 
+    <style name="main" parent="android:style/Theme.NoTitleBar.Fullscreen" >
+        <item name="colorPrimaryDark">@color/primary_dark_material_light_1</item>
+        <item name="android:colorBackground">@color/primary_dark_material_light_1</item>
+        <item name="attr/actionBarSize">40dp</item>
+    </style>
+
+    <style name="main_theme" parent="@android:style/Theme.NoTitleBar.Fullscreen" />
+
 </resources>
