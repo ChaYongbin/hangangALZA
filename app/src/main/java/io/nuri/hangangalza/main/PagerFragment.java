@@ -85,7 +85,7 @@ public class PagerFragment  extends Fragment {
         titleView = v.findViewById(R.id.title_bg);
 
         listView = (ListView) v.findViewById(R.id.list);
-        listView.setAdapter(new BlurListAdapter(getActivity(), getArguments().getString("name")));
+        listView.setAdapter(new BlurListAdapter(getActivity(), getArguments().getString("name"), getArguments().getString("id") ));
         scrollView = (ScrollView) v.findViewById(R.id.bgScrollView);
 
         listenToScroll();

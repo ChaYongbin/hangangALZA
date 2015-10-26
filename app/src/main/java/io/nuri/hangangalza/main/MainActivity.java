@@ -2,11 +2,19 @@ package io.nuri.hangangalza.main;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
+import android.app.AlertDialog;
+import android.view.ContextThemeWrapper;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
 
 import com.xgc1986.parallaxPagerTransformer.ParallaxPagerTransformer;
 
@@ -14,16 +22,24 @@ import java.util.ArrayList;
 
 import io.nuri.hangangalza.StartActivity;
 import io.nuri.hangangalza.data.BridgeData;
+import io.nuri.hangangalza.data.BridgeInfoData;
+import io.nuri.hangangalza.data.BridgeInfoLoadData;
 import io.nuri.hangangalza.data.BridgeLoadData;
 import io.nuri.hangangalza.R;
+import io.nuri.hangangalza.tour.TourActivity;
 
 public class MainActivity extends FragmentActivity {
 
     ViewPager mPager;
     PagerAdapter mAdapter;
 
+    RelativeLayout leftRL;
+    DrawerLayout drawerLayout;
+    ListView listView;
     private BridgeLoadData bridgeLoadData;
+    private BridgeInfoLoadData bridgeInfoLoadData;
     private ArrayList<BridgeData> bridgeDataArrayList = new ArrayList<BridgeData>();
+    private ArrayList<BridgeInfoData> bridgeInfoArrayList = new ArrayList<BridgeInfoData>();
 
     private Context context;
 
@@ -36,12 +52,52 @@ public class MainActivity extends FragmentActivity {
 
         super.onCreate(savedInstanceState);
 
-        startActivity(new Intent(this, StartActivity.class));
+//        startActivity(new Intent(this, StartActivity.class));
 
         setContentView(R.layout.activity_main);
 
         initPager();
 
+        leftRL = (RelativeLayout)findViewById(R.id.whatYouWantInLeftDrawer);
+        drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
+        listView = (ListView) findViewById(R.id.navi_list);
+        listView.setAdapter(new NavigationAdapter(this, bridgeDataArrayList));
+        listView.setOnItemClickListener(new ListViewItemClickListener());
+
+    }
+
+    private class ListViewItemClickListener implements AdapterView.OnItemClickListener{
+
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            if(position != 24) {
+                if (mPager.getCurrentItem() == position) {
+                    drawerLayout.closeDrawer(leftRL);
+                } else {
+                    mPager.setCurrentItem(position);
+                    drawerLayout.closeDrawer(leftRL);
+                }
+            } else {
+                AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(view.getContext(), R.style.AppTheme));
+                builder.setTitle("앱 정보")
+                        .setMessage("현재 앱 버전은 v.1.0.0 버전입니다")
+                        .setCancelable(false)
+                        .setNegativeButton("확인", new DialogInterface.OnClickListener() {
+                            // 취소 버튼 클릭시 설정
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                dialog.cancel();
+                            }
+                        });
+                AlertDialog dialog = builder.create();    // 알림창 객체 생성
+                dialog.show();    // 알림창 띄우기
+            }
+
+        }
+    }
+
+    public void onMenu(View view){
+        drawerLayout.openDrawer(leftRL);
     }
 
     public static Context getContext(){

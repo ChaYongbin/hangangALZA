@@ -2,39 +2,37 @@ package io.nuri.hangangalza.main;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebSettings;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import io.nuri.hangangalza.R;
-
-import static io.nuri.hangangalza.R.color.white;
+import io.nuri.hangangalza.data.BridgeData;
 
 /**
  * Created by chayongbin on 15. 10. 25..
  */
-public class BridgeTourListAdapter extends BaseAdapter {
+public class NavigationAdapter extends BaseAdapter {
 
-    private ArrayList<String> tourList;
+    private ArrayList<BridgeData> bridgeList;
     private LayoutInflater layoutInflater;
     private Context context;
 
-    public BridgeTourListAdapter(Context context, ArrayList<String> tourList) {
-        layoutInflater = LayoutInflater.from(context);
-        this.tourList = tourList;
+    public NavigationAdapter(Context context, ArrayList<BridgeData> bridgeList) {
+
         this.context = context;
+        this.bridgeList = bridgeList;
+        layoutInflater = LayoutInflater.from(context);
+
     }
 
     @Override
     public int getCount() {
-        return tourList.size();
-//        return 3;
+        return bridgeList.size() + 1;
     }
 
     @Override
@@ -49,16 +47,20 @@ public class BridgeTourListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
         if (convertView == null) {
             convertView = layoutInflater.inflate(
-                    R.layout.list_item, parent, false);
+                    R.layout.navi_item, parent, false);
         }
 
         TextView textView = (TextView) convertView;
         String color = "#FFFFFF";
         textView.setTextColor(Color.parseColor(color));
-        textView.setText("  " + tourList.get(position));
+        if (position == bridgeList.size()){
+            textView.setText("  " + "앱정보");
+
+        } else {
+            textView.setText("  " + bridgeList.get(position).getBridge_kr());
+        }
 
         return convertView;
     }

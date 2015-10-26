@@ -34,15 +34,28 @@ public class StartActivity extends Activity {
 
     private void initialize()
     {
+//        Handler handler = new Handler() {
+//            @Override
+//            public void handleMessage(Message msg)
+//            {
+//                finish();    // 액티비티 종료
+//            }
+//        };
+//
+//        handler.sendEmptyMessageDelayed(0, 3000);    // ms, 3초후 종료시킴
+
         Handler handler = new Handler() {
             @Override
-            public void handleMessage(Message msg)
-            {
-                finish();    // 액티비티 종료
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+
+                Intent intent = new Intent(StartActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
             }
         };
 
-        handler.sendEmptyMessageDelayed(0, 3000);    // ms, 3초후 종료시킴
+        handler.sendEmptyMessageDelayed(0, 3000);
     }
 
 }

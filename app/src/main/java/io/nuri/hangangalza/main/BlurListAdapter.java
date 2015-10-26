@@ -2,8 +2,12 @@ package io.nuri.hangangalza.main;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.app.AlertDialog;
 import android.util.Log;
+import android.util.TypedValue;
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,10 +20,14 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.maps.GoogleMap;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 import io.nuri.hangangalza.R;
+import io.nuri.hangangalza.data.BridgeData;
+import io.nuri.hangangalza.data.BridgeInfoData;
+import io.nuri.hangangalza.data.BridgeInfoLoadData;
 import io.nuri.hangangalza.tour.TourActivity;
 import io.nuri.hangangalza.utils.ImageUtils;
 
@@ -36,13 +44,20 @@ public class BlurListAdapter extends BaseAdapter {
     private int screenHeight;
     private Context mContext;
 
-    private String name;
+    private BridgeInfoLoadData bridgeInfoLoadData;
+    private ArrayList<BridgeInfoData> bridgeInfoArrayList = new ArrayList<BridgeInfoData>();
 
-    public BlurListAdapter(Activity context, String name) {
+    private String name;
+    private int id;
+
+    public BlurListAdapter(Activity context, String name, String id) {
         layoutInflater = LayoutInflater.from(context);
         screenHeight = ImageUtils.getScreenHeight(context);
         this.name = name;
         mContext = context;
+        bridgeInfoLoadData = new BridgeInfoLoadData(context);
+        bridgeInfoArrayList = bridgeInfoLoadData.getJsonData();
+        this.id = Integer.parseInt(id);
     }
 
     @Override
@@ -64,7 +79,7 @@ public class BlurListAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         switch (getItemViewType(position)) {
             case 0:
-                return getFirstView(position, convertView, parent, name);
+                return getFirstView(position, convertView, parent, name, id-1);
             case 1:
                 return getSecondView(position, convertView, parent);
             default:
@@ -80,7 +95,7 @@ public class BlurListAdapter extends BaseAdapter {
         return 1;
     }
 
-    private View getFirstView(int position, View convertView, ViewGroup parent, String name) {
+    private View getFirstView(int position, View convertView, ViewGroup parent, String name, int id) {
         if (convertView == null) {
             convertView = layoutInflater.inflate(R.layout.activity_page_layout,
                     parent, false);
@@ -92,18 +107,23 @@ public class BlurListAdapter extends BaseAdapter {
             convertView.setId(R.id.id0);
 
             createToBridgeName(convertView, name);
-            createToBridgeInfo(convertView, "0");
-            createToBridgeMap(convertView, "37.5980835", "126.8098462");
+            createToBridgeInfo(convertView, bridgeInfoArrayList.get(id).getBridge_info());
+            createToBridgeMap(convertView, bridgeInfoArrayList.get(id).getBridge_lat(),
+                    bridgeInfoArrayList.get(id).getBridge_lng());
+
+            String[] array;
+
+            array = bridgeInfoArrayList.get(id).getBridge_tourist().split(", ");
 
             ArrayList<String> arrayList = new ArrayList<String>();
-            arrayList.add("행주나루터");
-            arrayList.add("강서한강공원");
-            arrayList.add("행주산성");
+            for (int i = 0; i < array.length; i++){
+                arrayList.add(array[i]);
+            }
             createToBridgeTourList(convertView, arrayList);
 
-            createToBridgeHistory(convertView, "1");
+            createToBridgeHistory(convertView, bridgeInfoArrayList.get(id).getBridge_history());
 
-            createToBikeMap(convertView, "37.5980835", "126.8098462");
+            createToBikeMap(convertView, bridgeInfoArrayList.get(id).getBridge_bike_lat(), bridgeInfoArrayList.get(id).getBridge_bike_lng());
 
         }
 
@@ -117,8 +137,7 @@ public class BlurListAdapter extends BaseAdapter {
     }
 
     private void createToBridgeInfo(View view, String info){
-        info = "1978년에 서울특별시와 경기도 고양시를 연결하는 너비 10m, 길이 1,400m의 단순 장대교량이 건설되었다. 이 교량의 상부구조는 포스트텐셔닝 공법을 이용한 29.8m의 단순 PSC 거더로 이루어졌으며, 특히 유심부 구간은 주운(舟運) 등을 위하여 지간장 40m의 강판형으로 시공하였다. " +
-                "하부구조의 기초공은 우물통 공법을 채택하였고, 교각공은 유속의 영향을 가장 적게 받는 지름 2.5m로 구성된 T형 교각으로 시공하였다. 서울의 서부지역과 경기도 서북부를 연결하는 이 다리는 한강횡단교량으로는 천호대교에 이어 열 번째로 가설되었다.";
+
         TextView textView = (TextView) view.findViewById(R.id.tv_bridge_info_content);
         textView.setText(info);
 
@@ -133,7 +152,10 @@ public class BlurListAdapter extends BaseAdapter {
                 "&zoom=13" +
                 "&size=300x200" +
                 "&maptype=roadmap" +
+                "&markers=color:red%7C" + lat + "," + lng +
                 "&key=" + API_KEY;
+
+        Log.e("URL : ", url);
 
         Glide.with(mContext).load(url).into(imageView);
 
@@ -145,7 +167,10 @@ public class BlurListAdapter extends BaseAdapter {
         listView.setAdapter(new BridgeTourListAdapter(mContext, tourList));
 
         ViewGroup.LayoutParams params = listView.getLayoutParams();
-        params.height = 100 * tourList.size();
+
+        params.height = ( int ) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
+                50 * tourList.size() , view.getResources().getDisplayMetrics());
+
         listView.setLayoutParams(params);
 
         listView.setOnItemClickListener(new ListViewItemClickListener(tourList));
@@ -153,8 +178,7 @@ public class BlurListAdapter extends BaseAdapter {
     }
 
     private void createToBridgeHistory(View view, String history){
-        history = "1978년에 서울특별시와 경기도 고양시를 연결하는 너비 10m, 길이 1,400m의 단순 장대교량이 건설되었다. 이 교량의 상부구조는 포스트텐셔닝 공법을 이용한 29.8m의 단순 PSC 거더로 이루어졌으며, 특히 유심부 구간은 주운(舟運) 등을 위하여 지간장 40m의 강판형으로 시공하였다. " +
-                "하부구조의 기초공은 우물통 공법을 채택하였고, 교각공은 유속의 영향을 가장 적게 받는 지름 2.5m로 구성된 T형 교각으로 시공하였다. 서울의 서부지역과 경기도 서북부를 연결하는 이 다리는 한강횡단교량으로는 천호대교에 이어 열 번째로 가설되었다.";
+
         TextView textView = (TextView) view.findViewById(R.id.tv_bridge_history_content);
         textView.setText(history);
     }
@@ -187,9 +211,18 @@ public class BlurListAdapter extends BaseAdapter {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-            Intent intent = new Intent(mContext, TourActivity.class);
-            intent.putExtra("tourTitle", tourList.get(position));
-            mContext.startActivity(intent);
+            AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(mContext, R.style.AppTheme));
+            builder.setTitle(tourList.get(position))
+                    .setMessage("죄송합니다. 현재 기능은 개발 진행중입니다.")
+                    .setCancelable(false)
+                    .setNegativeButton("확인", new DialogInterface.OnClickListener() {
+                        // 취소 버튼 클릭시 설정
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            dialog.cancel();
+                        }
+                    });
+            android.app.AlertDialog dialog = builder.create();    // 알림창 객체 생성
+            dialog.show();    // 알림창 띄우기
 
 
         }
