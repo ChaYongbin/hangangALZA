@@ -8,7 +8,9 @@ import android.os.Handler;
 import android.os.Message;
 import android.widget.ImageView;
 
+
 import com.bumptech.glide.Glide;
+import com.squareup.picasso.Picasso;
 
 import io.nuri.hangangalza.main.MainActivity;
 import io.nuri.hangangalza.utils.ImageUtils;

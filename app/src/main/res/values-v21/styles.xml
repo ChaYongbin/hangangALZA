@@ -18,4 +18,11 @@
     </style>
 
     <style name="AlertDialogCustom" parent="@android:style/Theme.Material.Light.Dialog" />
+
+    <style name="app_informaion" parent="@style/AppTheme">
+        <item name="colorPrimaryDark">@color/statusBarColor</item>
+        <item name="colorPrimary">@color/statusBarColor</item>
+        <item name="android:textColorPrimary">@color/primary_text_material_light</item>
+        <item name="android:statusBarColor">@color/statusBarColor</item>
+    </style>
 </resources>

@@ -3,9 +3,7 @@ package io.nuri.hangangalza.main;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.app.AlertDialog;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
@@ -19,7 +17,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.google.android.gms.maps.GoogleMap;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -108,6 +105,8 @@ public class BlurListAdapter extends BaseAdapter {
 
             createToBridgeName(convertView, name);
             createToBridgeInfo(convertView, bridgeInfoArrayList.get(id).getBridge_info());
+            createToBridgeTraffic(convertView, bridgeInfoArrayList.get(id).getBridge_metro(),
+                    bridgeInfoArrayList.get(id).getBridge_bus());
             createToBridgeMap(convertView, bridgeInfoArrayList.get(id).getBridge_lat(),
                     bridgeInfoArrayList.get(id).getBridge_lng());
 
@@ -143,6 +142,17 @@ public class BlurListAdapter extends BaseAdapter {
 
     }
 
+    private void createToBridgeTraffic(View view, String metro, String bus){
+
+        TextView textView = (TextView) view.findViewById(R.id.metro_info);
+        textView.setText(metro);
+
+        TextView textView1 = (TextView) view.findViewById(R.id.bus_info);
+        textView1.setText(bus);
+
+    }
+
+
     private void createToBridgeMap(View view, String lat, String lng){
 
         ImageView imageView = (ImageView) view.findViewById(R.id.img_bridge_static_map);
@@ -154,8 +164,6 @@ public class BlurListAdapter extends BaseAdapter {
                 "&maptype=roadmap" +
                 "&markers=color:red%7C" + lat + "," + lng +
                 "&key=" + API_KEY;
-
-        Log.e("URL : ", url);
 
         Glide.with(mContext).load(url).into(imageView);
 

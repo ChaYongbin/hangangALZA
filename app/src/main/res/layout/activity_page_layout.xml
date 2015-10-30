@@ -136,7 +136,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="대중교통"
+            android:text="주변 대중교통"
             android:id="@+id/tv_bridge_traffic_title"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
@@ -171,7 +171,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="경의-중앙선 : 능곡역 행신역 "
+                android:text="주변 역 정보가 없습니다."
                 android:id="@+id/metro_info"
                 android:layout_alignTop="@+id/metro"
                 android:layout_toRightOf="@+id/metro"
@@ -193,7 +193,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="85-1번, 011번, 012번"
+                android:text="주변 버스 정보가 없습니다."
                 android:id="@+id/bus_info"
                 android:gravity="center"
                 android:textSize="16sp"

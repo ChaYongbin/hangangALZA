@@ -37,13 +37,8 @@ public class MainActivity extends FragmentActivity {
     DrawerLayout drawerLayout;
     ListView listView;
     private BridgeLoadData bridgeLoadData;
-    private BridgeInfoLoadData bridgeInfoLoadData;
     private ArrayList<BridgeData> bridgeDataArrayList = new ArrayList<BridgeData>();
-    private ArrayList<BridgeInfoData> bridgeInfoArrayList = new ArrayList<BridgeInfoData>();
 
-    private Context context;
-
-    private int status;
     /**
      * Called when the activity is first created.
      */
@@ -52,14 +47,15 @@ public class MainActivity extends FragmentActivity {
 
         super.onCreate(savedInstanceState);
 
-//        startActivity(new Intent(this, StartActivity.class));
-
         setContentView(R.layout.activity_main);
 
         initPager();
 
+        // DrawerLayout Create Setting
         leftRL = (RelativeLayout)findViewById(R.id.whatYouWantInLeftDrawer);
         drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
+
+        // Listview Create Setting
         listView = (ListView) findViewById(R.id.navi_list);
         listView.setAdapter(new NavigationAdapter(this, bridgeDataArrayList));
         listView.setOnItemClickListener(new ListViewItemClickListener());
@@ -79,6 +75,9 @@ public class MainActivity extends FragmentActivity {
                     drawerLayout.closeDrawer(leftRL);
                 }
             } else {
+
+                //@TODO App Information Actitivty
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(view.getContext(), R.style.AppTheme));
                 builder.setTitle("앱 정보")
                         .setMessage("현재 앱 버전은 v.1.0.0 버전입니다")
@@ -102,10 +101,6 @@ public class MainActivity extends FragmentActivity {
 
     public static Context getContext(){
         return getContext();
-    }
-
-    public static Activity getActivity() {
-        return getActivity();
     }
 
     private void initPager(){
