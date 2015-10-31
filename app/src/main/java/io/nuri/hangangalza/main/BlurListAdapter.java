@@ -29,6 +29,7 @@ import io.nuri.hangangalza.data.BridgeInfoData;
 import io.nuri.hangangalza.data.BridgeInfoLoadData;
 import io.nuri.hangangalza.data.TourData;
 import io.nuri.hangangalza.data.TourLoadData;
+import io.nuri.hangangalza.map.MapActivity;
 import io.nuri.hangangalza.tour.TourActivity;
 import io.nuri.hangangalza.utils.ImageUtils;
 
@@ -118,7 +119,8 @@ public class BlurListAdapter extends BaseAdapter {
             createToBridgeTraffic(convertView, bridgeInfoArrayList.get(id).getBridge_metro(),
                     bridgeInfoArrayList.get(id).getBridge_bus());
             createToBridgeMap(convertView, bridgeInfoArrayList.get(id).getBridge_lat(),
-                    bridgeInfoArrayList.get(id).getBridge_lng());
+                    bridgeInfoArrayList.get(id).getBridge_lng(),
+                    name);
 
             String[] array;
 
@@ -132,7 +134,9 @@ public class BlurListAdapter extends BaseAdapter {
 
             createToBridgeHistory(convertView, bridgeInfoArrayList.get(id).getBridge_history());
 
-            createToBikeMap(convertView, bridgeInfoArrayList.get(id).getBridge_bike_lat(), bridgeInfoArrayList.get(id).getBridge_bike_lng());
+            createToBikeMap(convertView, bridgeInfoArrayList.get(id).getBridge_bike_lat(),
+                    bridgeInfoArrayList.get(id).getBridge_bike_lng(),
+                    bridgeInfoArrayList.get(id).getBridge_bike_name());
 
         }
 
@@ -163,7 +167,7 @@ public class BlurListAdapter extends BaseAdapter {
     }
 
 
-    private void createToBridgeMap(View view, String lat, String lng){
+    private void createToBridgeMap(View view, final String lat, final String lng, final String name){
 
         ImageView imageView = (ImageView) view.findViewById(R.id.img_bridge_static_map);
 
@@ -176,6 +180,17 @@ public class BlurListAdapter extends BaseAdapter {
                 "&key=" + API_KEY;
 
         Glide.with(mContext).load(url).into(imageView);
+
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent bikeIntent = new Intent(mContext, MapActivity.class);
+                bikeIntent.putExtra("lat", lat);
+                bikeIntent.putExtra("lng", lng);
+                bikeIntent.putExtra("name", name);
+                mContext.startActivity(bikeIntent);
+            }
+        });
 
     }
 
@@ -201,7 +216,7 @@ public class BlurListAdapter extends BaseAdapter {
         textView.setText(history);
     }
 
-    private void createToBikeMap(View view, String lat, String lng){
+    private void createToBikeMap(View view, final String lat, final String lng, final String name){
 
         ImageView imageView = (ImageView) view.findViewById(R.id.img_bridge_static_map_bike);
 
@@ -214,6 +229,17 @@ public class BlurListAdapter extends BaseAdapter {
                 "&key=" + API_KEY;
 
         Glide.with(mContext).load(url).into(imageView);
+
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent bikeIntent = new Intent(mContext, MapActivity.class);
+                bikeIntent.putExtra("lat", lat);
+                bikeIntent.putExtra("lng", lng);
+                bikeIntent.putExtra("name", name);
+                mContext.startActivity(bikeIntent);
+            }
+        });
 
     }
 

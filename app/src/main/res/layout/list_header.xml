@@ -2,11 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:id="@+id/list_header"
-    android:layout_height="56dp"
+    android:layout_height="50dp"
     android:paddingBottom="5dp"
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
-    android:paddingTop="15dp"
+    android:paddingTop="10dp"
     android:background="#17C694"
     android:weightSum="1">
 
@@ -36,17 +36,6 @@
             android:textColor="#FFFFFF"
             android:textStyle="bold" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageView4"
-            android:src="@drawable/bar"
-            android:layout_gravity="left"
-            android:layout_below="@+id/imageView3"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="4dp" />
     </RelativeLayout>
 
 </LinearLayout>
