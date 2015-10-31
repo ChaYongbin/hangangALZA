@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.app.AlertDialog;
+import android.content.Intent;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
@@ -25,6 +27,8 @@ import io.nuri.hangangalza.R;
 import io.nuri.hangangalza.data.BridgeData;
 import io.nuri.hangangalza.data.BridgeInfoData;
 import io.nuri.hangangalza.data.BridgeInfoLoadData;
+import io.nuri.hangangalza.data.TourData;
+import io.nuri.hangangalza.data.TourLoadData;
 import io.nuri.hangangalza.tour.TourActivity;
 import io.nuri.hangangalza.utils.ImageUtils;
 
@@ -42,7 +46,9 @@ public class BlurListAdapter extends BaseAdapter {
     private Context mContext;
 
     private BridgeInfoLoadData bridgeInfoLoadData;
+    private TourLoadData tourLoadData;
     private ArrayList<BridgeInfoData> bridgeInfoArrayList = new ArrayList<BridgeInfoData>();
+    private ArrayList<TourData> tourArrayList = new ArrayList<TourData>();
 
     private String name;
     private int id;
@@ -54,7 +60,11 @@ public class BlurListAdapter extends BaseAdapter {
         mContext = context;
         bridgeInfoLoadData = new BridgeInfoLoadData(context);
         bridgeInfoArrayList = bridgeInfoLoadData.getJsonData();
+        tourLoadData = new TourLoadData(context);
+        tourArrayList = tourLoadData.getJsonData();
         this.id = Integer.parseInt(id);
+
+
     }
 
     @Override
@@ -219,9 +229,21 @@ public class BlurListAdapter extends BaseAdapter {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+            int idx;
+
+            for (int i = 0; i < tourArrayList.size() ; i++) {
+                if (tourArrayList.get(i).getName().equals(tourList.get(position))) {
+                    idx = tourArrayList.get(i).getName().indexOf(tourList.get(position));
+                    Intent intent = new Intent(mContext, TourActivity.class);
+                    intent.putExtra("link", tourArrayList.get(idx).getLink());
+                    mContext.startActivity(intent);
+                    return;
+                }
+            }
+
             AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(mContext, R.style.AppTheme));
             builder.setTitle(tourList.get(position))
-                    .setMessage("죄송합니다. 현재 기능은 개발 진행중입니다.")
+                    .setMessage("추후 업데이트 될 예정입니다")
                     .setCancelable(false)
                     .setNegativeButton("확인", new DialogInterface.OnClickListener() {
                         // 취소 버튼 클릭시 설정
@@ -230,9 +252,7 @@ public class BlurListAdapter extends BaseAdapter {
                         }
                     });
             android.app.AlertDialog dialog = builder.create();    // 알림창 객체 생성
-            dialog.show();    // 알림창 띄우기
-
-
+            dialog.show();
         }
     }
 

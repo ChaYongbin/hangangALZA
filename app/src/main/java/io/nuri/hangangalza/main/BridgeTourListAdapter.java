@@ -55,7 +55,7 @@ public class BridgeTourListAdapter extends BaseAdapter {
                     R.layout.list_item, parent, false);
         }
 
-        TextView textView = (TextView) convertView;
+        TextView textView = (TextView) convertView.findViewById(R.id.text1);
         String color = "#FFFFFF";
         textView.setTextColor(Color.parseColor(color));
         textView.setText("  " + tourList.get(position));
