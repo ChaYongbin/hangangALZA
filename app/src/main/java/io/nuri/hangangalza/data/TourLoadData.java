@@ -63,7 +63,7 @@ public class TourLoadData {
                 "\t\t},\n" +
                 "\n" +
                 "\t\t{\n" +
-                "\t\t\t\"name\" : \"강서습지 생태공원 \",\n" +
+                "\t\t\t\"name\" : \"강서습지 생태공원\",\n" +
                 "\t\t\t\"Link\" : \"http://m.visitkorea.or.kr/LocalAreaMain.do?method=getDetailDB&cid=809490\"\n" +
                 "\n" +
                 "\t\t},\n" +
