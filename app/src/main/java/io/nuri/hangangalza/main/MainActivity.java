@@ -56,9 +56,9 @@ public class MainActivity extends FragmentActivity {
         drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
 
         // Listview Create Setting
-        listView = (ListView) findViewById(R.id.navi_list);
-        listView.setAdapter(new NavigationAdapter(this, bridgeDataArrayList));
-        listView.setOnItemClickListener(new ListViewItemClickListener());
+//        listView = (ListView) findViewById(R.id.navi_list);
+//        listView.setAdapter(new NavigationAdapter(this, bridgeDataArrayList));
+//        listView.setOnItemClickListener(new ListViewItemClickListener());
 
     }
 
