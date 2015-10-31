@@ -255,12 +255,13 @@ public class BlurListAdapter extends BaseAdapter {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-            int idx;
-
             for (int i = 0; i < tourArrayList.size() ; i++) {
                 if (tourArrayList.get(i).getName().equals(tourList.get(position))) {
-                    idx = tourArrayList.get(i).getName().indexOf(tourList.get(position));
+
+                    int idx = tourArrayList.indexOf(new TourData(tourList.get(position), null));
+
                     Intent intent = new Intent(mContext, TourActivity.class);
+
                     intent.putExtra("link", tourArrayList.get(idx).getLink());
                     mContext.startActivity(intent);
                     return;

@@ -14,7 +14,7 @@
 
     <RelativeLayout
         android:id="@+id/whatYouWantInLeftDrawer"
-        android:layout_width="220dp"
+        android:layout_width="250dp"
         android:layout_height="match_parent"
         android:layout_gravity="start" >
 
@@ -29,8 +29,11 @@
 
             <LinearLayout
                 android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="4dp"
                 android:layout_width="match_parent"
-                android:layout_height="50dp">
+                android:layout_height="50dp"
+                android:onClick="AllView">
 
                 <ImageView
                     android:layout_width="25dp"
@@ -46,7 +49,7 @@
                     android:text="대교 모아보기"
                     android:id="@+id/textView4"
                     android:textColor="#FFFFFF"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     android:gravity="center_vertical|left"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
@@ -56,7 +59,9 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="50dp">
+                android:layout_marginLeft="4dp"
+                android:layout_height="50dp"
+                android:onClick="History">
 
                 <ImageView
                     android:layout_width="25dp"
@@ -72,7 +77,7 @@
                     android:text="한강의 역사"
                     android:id="@+id/textView5"
                     android:textColor="#FFFFFF"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     android:gravity="center_vertical|left"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
@@ -82,7 +87,9 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="50dp">
+                android:layout_marginLeft="4dp"
+                android:layout_height="50dp"
+                android:onClick="Hangang">
 
                 <ImageView
                     android:layout_width="25dp"
@@ -98,7 +105,7 @@
                     android:text="한강사업본부"
                     android:id="@+id/textView6"
                     android:textColor="#FFFFFF"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     android:gravity="center_vertical|left"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
@@ -108,7 +115,9 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="50dp">
+                android:layout_marginLeft="4dp"
+                android:layout_height="50dp"
+                android:onClick="Gusuk">
 
                 <ImageView
                     android:layout_width="25dp"
@@ -124,7 +133,7 @@
                     android:text="대한민국 구석구석"
                     android:id="@+id/textView9"
                     android:textColor="#FFFFFF"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     android:gravity="center_vertical|left"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
@@ -134,7 +143,9 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="50dp">
+                android:layout_marginLeft="4dp"
+                android:layout_height="50dp"
+                android:onClick="VisitSeoul">
 
                 <ImageView
                     android:layout_width="25dp"
@@ -150,7 +161,7 @@
                     android:text="Visit Seoul"
                     android:id="@+id/textView10"
                     android:textColor="#FFFFFF"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     android:gravity="center_vertical|left"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
@@ -160,7 +171,9 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="50dp">
+                android:layout_marginLeft="4dp"
+                android:layout_height="50dp"
+                android:onClick="Info">
 
                 <ImageView
                     android:layout_width="25dp"
@@ -176,13 +189,24 @@
                     android:text="앱 정보"
                     android:id="@+id/textView8"
                     android:textColor="#FFFFFF"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     android:gravity="center_vertical|left"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:layout_marginLeft="5dp" />
             </LinearLayout>
         </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Copyright 2015.\n NuRi Labs all rights reserved"
+            android:id="@+id/textView7"
+            android:gravity="center|bottom"
+            android:textColor="#cecece"
+            android:textSize="13sp"
+            android:layout_marginBottom="5dp"/>
+
     </RelativeLayout>
 
 </android.support.v4.widget.DrawerLayout>

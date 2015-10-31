@@ -26,7 +26,10 @@ import io.nuri.hangangalza.data.BridgeInfoData;
 import io.nuri.hangangalza.data.BridgeInfoLoadData;
 import io.nuri.hangangalza.data.BridgeLoadData;
 import io.nuri.hangangalza.R;
+import io.nuri.hangangalza.map.AllBridgeViewActivity;
+import io.nuri.hangangalza.map.MapActivity;
 import io.nuri.hangangalza.tour.TourActivity;
+import io.nuri.hangangalza.utils.AppInformationActivity;
 
 public class MainActivity extends FragmentActivity {
 
@@ -49,7 +52,16 @@ public class MainActivity extends FragmentActivity {
 
         setContentView(R.layout.activity_main);
 
+        Intent intent = getIntent();
+        String str = intent.getStringExtra("id");
+
         initPager();
+
+        if (str != null){
+            int idx = Integer.parseInt(str);
+            mPager.setCurrentItem(idx + 240);
+        }
+
 
         // DrawerLayout Create Setting
         leftRL = (RelativeLayout)findViewById(R.id.whatYouWantInLeftDrawer);
@@ -60,6 +72,51 @@ public class MainActivity extends FragmentActivity {
 //        listView.setAdapter(new NavigationAdapter(this, bridgeDataArrayList));
 //        listView.setOnItemClickListener(new ListViewItemClickListener());
 
+    }
+
+    public void AllView(View view){
+        Intent allIntent = new Intent(this, AllBridgeViewActivity.class);
+        allIntent.putExtra("lat", "37.568671");
+        allIntent.putExtra("lng", "127.132305");
+        allIntent.putExtra("name", "");
+        this.startActivity(allIntent);
+    }
+
+    public void Info(View view){
+        Intent intent = new Intent(this, AppInformationActivity.class);
+        this.startActivity(intent);
+    }
+
+    public void History(View view) {
+        Intent intent = new Intent(this, TourActivity.class);
+
+        intent.putExtra("link", "http://hangang.seoul.go.kr/archives/903");
+        this.startActivity(intent);
+        return;
+    }
+
+    public void Gusuk(View view) {
+        Intent intent = new Intent(this, TourActivity.class);
+
+        intent.putExtra("link", "http://m.visitkorea.or.kr/mobileweb/home/index.jsp");
+        this.startActivity(intent);
+        return;
+    }
+
+    public void VisitSeoul(View view) {
+        Intent intent = new Intent(this, TourActivity.class);
+
+        intent.putExtra("link", "http://m.visitseoul.net/kr/m/index.do?_method=main");
+        this.startActivity(intent);
+        return;
+    }
+
+    public void Hangang(View view) {
+        Intent intent = new Intent(this, TourActivity.class);
+
+        intent.putExtra("link", "http://hangang.seoul.go.kr");
+        this.startActivity(intent);
+        return;
     }
 
     private class ListViewItemClickListener implements AdapterView.OnItemClickListener{

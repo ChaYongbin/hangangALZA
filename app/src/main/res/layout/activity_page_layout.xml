@@ -176,9 +176,9 @@
                 android:layout_alignTop="@+id/metro"
                 android:layout_toRightOf="@+id/metro"
                 android:layout_alignBottom="@+id/metro"
-                android:gravity="center"
                 android:textSize="16sp"
-                android:textColor="#FFFFFF" />
+                android:textColor="#FFFFFF"
+                android:gravity="left" />
 
             <ImageView
                 android:layout_width="40dp"
@@ -195,7 +195,7 @@
                 android:layout_height="wrap_content"
                 android:text="주변 버스 정보가 없습니다."
                 android:id="@+id/bus_info"
-                android:gravity="center"
+                android:gravity="center|left"
                 android:textSize="16sp"
                 android:textColor="#FFFFFF"
                 android:layout_below="@+id/metro_info"
